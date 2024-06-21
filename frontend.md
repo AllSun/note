@@ -867,7 +867,9 @@ webpack生成，需要先安装node.js   同时附带安装 包管理器  npm
 
 可利用babel进行解析
 
-在 JavaScript 中，函数的参数可以使用方括号 `[]` 表示它们是可选的。**这种表示方法通常用于文档和说明，而不是在实际代码中**。`array.map(callback(currentValue[, index[, array]])[, thisArg])` 语法中，
+在 JavaScript 中，函数的参数可以使用方括号 `[]` 表示它们是可选的。**这种表示方法通常用于文档和说明，而不是在实际代码中**。`array.map(callback(currentValue[, index[, array]])[, thisArg])` 
+
+### 渲染列表
 
 ```react
        {'我是一段话'}
@@ -921,4 +923,15 @@ function App() {
 
 ## 组件
 
-放置逻辑和UI
+一定要是函数，放置逻辑和UI，UI用return 返回
+
+## hook函数
+
+### useState()
+
+> 状态变量，状态变量发生变化的时候，组件也会跟着变化，数据驱动视图
+
+```react
+const count =
+```
+
