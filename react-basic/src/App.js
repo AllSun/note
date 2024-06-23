@@ -1,15 +1,32 @@
+import {createContext, useContext} from 'react'
+
+const MsgContext = createContext()
+function A(){
+  return(
+    <div>这是A组件
+      <B/>
+    </div>
+  )
+}
+
+function B(){
+  const msg = useContext(MsgContext);
+  return(
+    <div>这是B组件,{msg}</div>
+  )
+}
+
 function App() {
-  const clickHandler = (e) => {
-    console.log(e);
-  }
 
-  function clickHandler2(e){
-    console.log(e);
-  }
-
-  return (
-   <button onClick={clickHandler}>按钮</button>
-  );
+  const msg = '测试context传输';
+  return(
+    <MsgContext.Provider value={msg}>
+    <div> 
+      这是父组件
+      <A/>
+    </div>
+    </MsgContext.Provider>
+  )
 }
 
 export default App;

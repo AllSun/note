@@ -923,7 +923,137 @@ function App() {
 
 ## 组件
 
-一定要是函数，放置逻辑和UI，UI用return 返回
+> 一定要是函数，放置逻辑和UI，UI用return 返回
+
+### 组件基础样式
+
+```react
+<div style = {{color : 'red'}}></div>  //传入一个对象 ，不推荐
+<div className = 'footer'></div>  //然后对应css文件中控制
+```
+
+### Classnames优化类型控制
+
+> 这是一个js库
+
+使用之后可简写为
+
+```react
+classNames('nav-item',{active: type === item.type}) //如果为true，返回  字符串 ’nav-item active‘
+```
+
+### 组件间通信
+
+> 组件之间的数据传递
+
+#### 父子通信
+
+父传子
+
+```REACT
+function Son(props){  //一般使用props作为参数,子组件props只读，只能父组件修改值
+  return (
+    <div>this is son's message,+{props.name}</div>
+  );
+}
+
+function App() {
+  return(
+    <Son name="这是爸爸给你的名字"> //参数可以为任意类型
+    </Son>
+  )
+}
+
+function Son(props){//一般使用props作为参数,子组件props只读，只能父组件修改值
+  return (
+    <div>this is son's message,+{props.name}+,+{props.child}+{props.children}</div>  //props.children是自带的属性，能够获得子组件中父组件添加的内容
+  );
+}
+
+function App() {
+  return(
+    <Son name="这是爸爸给你的名字"
+      child = {<span>传递个JSX给你试试</span>}
+    >
+      <span>children属性测试</span>
+    </Son>
+  )
+}
+```
+
+子传父
+
+> 在子组件中调用父组件的中的函数并传入实参
+
+```react
+import {useState} from 'react'
+function Son({onGetMessage}){
+  const msg = '子传父';
+  return (
+    <button onClick={()=> onGetMessage(msg)}>按钮</button>
+  );
+}
+
+function App() {
+  
+  const [msg,SetMsg] = useState('');
+  const getMessage = (msg) =>{
+      console.log(msg);
+      SetMsg(msg);
+  }
+
+  return(
+    <div> {msg}
+    <Son  onGetMessage={getMessage} />
+    </div>
+  )
+}
+```
+
+
+
+#### 兄弟通信
+
+> 状态提升，A传给父组件，父组件传给B
+
+#### 跨层通信
+
+> 顶层组件、底层组件
+
+```react
+import {createContext, useContext} from 'react'
+
+const MsgContext = createContext()  //创建一个上下文对象
+function A(){
+  return(
+    <div>这是A组件
+      <B/>
+    </div>
+  )
+}
+
+function B(){
+  const msg = useContext(MsgContext);  //使用传递值
+  return(
+    <div>这是B组件,{msg}</div>
+  )
+}
+
+function App() {
+
+  const msg = '测试context传输';
+  return(
+    <MsgContext.Provider value={msg}>  //value为传递的值
+    <div> 
+      这是父组件
+      <A/>
+    </div>
+    </MsgContext.Provider>
+  )
+}
+```
+
+
 
 ## hook函数
 
@@ -932,6 +1062,56 @@ function App() {
 > 状态变量，状态变量发生变化的时候，组件也会跟着变化，数据驱动视图
 
 ```react
-const count =
+const [count,setCount] = useState(0) //形参为count的默认值，只能通过setCount()修改count的值，会引起视图重新渲染
+count++；//值变更不会导致视图更新
+```
+
+#### 修改对象状态
+
+```react
+const [form ,setForm] = useState({
+  name: 'java'
+})
+
+setForm({
+  ...Form, //展开对象并生成一个全新一样的对象
+  name: 'javascript'  //替换已有的属性
+})
+```
+
+#### 修改数组
+
+模板字符串
+
+> 动态生成字符串
+
+```react
+className={`nav-item ${type === expectedType && 'active'}`}  // ``里面的内容即模板字符串，nav-item为静态类名，${}用于在模板字符串中插入JS表达式
+//&& 操作符是一个逻辑与操作符,如果左侧操作数（即 true）是 true，它会返回右侧操作数（即 'active'）,如果左侧操作数是 false，它会返回左侧操作数（即 false）。
+```
+
+#### 受控表单绑定
+
+> 输入框的值和state绑定，双向绑定
+
+```react
+  const [value ,setValue] = useState('');
+
+  return(
+    <input value = {value} onChange={(e) => setValue(e.target.value)}></input>
+  )
+//onChange 是一个事件处理程序属性
+//箭头函数作为回调函数
+```
+
+### useRef()
+
+> 获取DOM对象
+
+```react
+const inputRef = useRef(null);
+<input type="text" ref={inputRef}></input>
+
+console.log(inputRef.current) //调用current获得DOM对象
 ```
 
