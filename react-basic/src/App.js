@@ -1,31 +1,24 @@
-import {createContext, useContext} from 'react'
-
-const MsgContext = createContext()
-function A(){
-  return(
-    <div>这是A组件
-      <B/>
-    </div>
-  )
-}
-
-function B(){
-  const msg = useContext(MsgContext);
-  return(
-    <div>这是B组件,{msg}</div>
-  )
-}
-
+import {useEffect,useState} from 'react'
 function App() {
+  const [count ,setCount] = useState(0)
+  //1.第二个参数为空， 初始渲染+组件更新
+  // useEffect(() =>{
+  //   console.log('副作用函数执行')
+  // })
 
-  const msg = '测试context传输';
+  //2.第二个参数为空，初始渲染
+  // useEffect(() =>{
+  //   console.log('副作用函数执行');
+  // },[])
+
+  //3.第二个参数特定依赖项，初始渲染+特定依赖项更新
+  useEffect(() =>{
+    console.log('副作用函数执行');
+  },[count])
+  
+
   return(
-    <MsgContext.Provider value={msg}>
-    <div> 
-      这是父组件
-      <A/>
-    </div>
-    </MsgContext.Provider>
+    <button onClick={() => {setCount(count+1)}}>+{count}</button>
   )
 }
 

@@ -1057,6 +1057,11 @@ function App() {
 
 ## hook函数
 
+**使用规则：**
+
+1. 在组件或自定义hook中使用
+2. 在组件顶层调用，不能嵌套在if、for、其他函数中
+
 ### useState()
 
 > 状态变量，状态变量发生变化的时候，组件也会跟着变化，数据驱动视图
@@ -1113,5 +1118,125 @@ const inputRef = useRef(null);
 <input type="text" ref={inputRef}></input>
 
 console.log(inputRef.current) //调用current获得DOM对象
+```
+
+### useEffect()
+
+> 不是由事件引起，而是渲染本身（如登录后报表展示）
+
+`useEffect(()=>{},[])`
+
+副作用函数，第二个参数为空数组是，只执行一次
+
+```react
+import {useEffect,useState} from 'react'
+function App() {
+  const [count ,setCount] = useState(0)
+  //1.第二个参数为空， 初始渲染+组件更新
+  // useEffect(() =>{
+  //   console.log('副作用函数执行')
+  // })
+
+  //2.第二个参数为空，初始渲染
+  // useEffect(() =>{
+  //   console.log('副作用函数执行');
+  // },[])
+
+  //3.第二个参数特定依赖项，初始渲染+特定依赖项更新
+  useEffect(() =>{
+    console.log('副作用函数执行');
+  },[count])
+  
+
+  return(
+    <button onClick={() => {setCount(count+1)}}>+{count}</button>
+  )
+}
+```
+
+#### 清除副作用
+
+> 由渲染本身引起的对接组件外部的操作
+
+```react	
+useEffect(()=>{
+  //副作用回调函数
+  return () =>{
+    //清除副作用函数,最常见的执行时机实在组件卸载时自动执行
+  }
+},[])
+```
+
+### 自定义hook函数
+
+```react
+//use打头的函数
+function useXXX(){
+  ...
+  return {value,toggle} //返回封装的状态或者回调函数，以对象或数组的形式
+}
+```
+
+## Redux
+
+> 集中状态管理工具
+
+redux包已经帮你定义好了参数，按照模板代码写就行，三大核心，state(要管理哪些数据)、action（要做哪些操作）、reducer（生成新的state）
+
+需安装官方插件：`Redux Toolkit` (简化处理逻辑的书写 ，内置immer、thunk)、`react-redux`(链接redux和react的中间件，获取、更新状态)，才可以使用redux
+
+```react
+<button id="decrement">-</button>
+<span id="count">0</span>
+<button id="increment">+</button>
+
+<script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+
+<script>
+  // 1. 定义reducer函数 
+  // 作用: 根据不同的action对象，返回不同的新的state
+  // state: 管理的数据初始状态
+  // action: 对象 type 标记当前想要做什么样的修改
+  function reducer (state = { count: 0 }, action) {
+    // 数据不可变：基于原始状态生成一个新的状态
+    if (action.type === 'INCREMENT') {
+      return { count: state.count + 1 }
+    }
+    if (action.type === 'DECREMENT') {
+      return { count: state.count - 1 }
+    }
+    return state
+  }
+
+  // 2. 使用reducer函数生成store实例
+  const store = Redux.createStore(reducer)
+
+  // 3. 通过store实例的subscribe订阅数据变化
+  // 回调函数可以在每次state发生变化的时候自动执行
+  store.subscribe(() => {
+    console.log('state变化了', store.getState())
+    document.getElementById('count').innerText = store.getState().count
+  })
+
+  // 4. 通过store实例的dispatch函数提交action更改状态 
+  const inBtn = document.getElementById('increment')
+  inBtn.addEventListener('click', () => {
+    // 增
+    store.dispatch({
+      type: 'INCREMENT'
+    })
+  })
+
+  const dBtn = document.getElementById('decrement')
+  dBtn.addEventListener('click', () => {
+    // 减
+    store.dispatch({
+      type: 'DECREMENT'
+    })
+  })
+
+  // 5. 通过store实例的getState方法获取最新状态更新到视图中
+
+</script>
 ```
 
