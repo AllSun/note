@@ -1244,3 +1244,33 @@ redux包已经帮你定义好了参数，按照模板代码写就行，三大核
 
 - 声明式导航  <Link to=''>,一般应用于菜单
 - 编程式导航  useNavigate()，一般应用于方法调用，跳转
+
+
+
+# 记账本
+
+> 基于react框架
+
+搭建环境
+
+```react
+npx create-react-app react-bill
+cd react-bill 
+npm install @reduxjs/toolkit react-redux react-router-dom dayjs classnames antd-mobile axios
+//安装完，查看package.json 是否安装完成，形成闭环工作流
+
+//路径解析配置 webpack
+craco插件
+npm i -D @craco/craco
+根目录下配置 craco.config.js
+
+//路径联想配置 vscode
+根目录下配置jsconfig.json
+
+//数据mock、模拟接口调用数据，使用json-server
+npm i -D json-server   //-D   安装至开发环境
+
+//路由设计
+
+```
+
