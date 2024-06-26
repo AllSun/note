@@ -1185,6 +1185,10 @@ redux包已经帮你定义好了参数，按照模板代码写就行，三大核
 
 需安装官方插件：`Redux Toolkit` (简化处理逻辑的书写 ，内置immer、thunk)、`react-redux`(链接redux和react的中间件，获取、更新状态)，才可以使用redux
 
+安装调试插件
+
+
+
 ```react
 <button id="decrement">-</button>
 <span id="count">0</span>
@@ -1269,8 +1273,21 @@ npm i -D @craco/craco
 
 //数据mock、模拟接口调用数据，使用json-server
 npm i -D json-server   //-D   安装至开发环境
-
+//需要在package.json中配置
+npm run start
 //路由设计
-
+二级路由出口
+<Outlet/>
 ```
 
+查看antdmobile官方文档
+
+```react
+:root:root {
+  --adm-color-primary: #a062d4;
+}
+```
+
+`<Button color='primary'>Purple</Button>`
+
+基于`Redux Toolkit` 管理账单列表，三大核心  state、reducer、action
