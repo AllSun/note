@@ -87,7 +87,7 @@
       {
         "type": "pay",
         "money": -100,
-        "date": "2023-04-02T16:00:00.000Z",
+        "date": "2024-06-02T16:00:00.000Z",
         "useFor": "food",
         "id": 20
       },
@@ -95,6 +95,41 @@
         "type": "income",
         "money": 10000,
         "date": "2023-02-28T16:00:00.000Z",
+        "useFor": "salary",
+        "id": 21
+      },
+      {
+        "type": "income",
+        "money": 10000,
+        "date": "2024-06-28T16:00:00.000Z",
+        "useFor": "salary",
+        "id": 21
+      },
+      {
+        "type": "income",
+        "money": 10000,
+        "date": "2023-02-28T16:00:00.000Z",
+        "useFor": "salary",
+        "id": 21
+      },
+      {
+        "type": "income",
+        "money": 10000,
+        "date": "2024-06-28T16:00:00.000Z",
+        "useFor": "salary",
+        "id": 21
+      },
+      {
+        "type": "income",
+        "money": 10000,
+        "date": "2024-06-29T16:00:00.000Z",
+        "useFor": "salary",
+        "id": 21
+      },
+      {
+        "type": "income",
+        "money": 10000,
+        "date": "2024-06-27T16:00:00.000Z",
         "useFor": "salary",
         "id": 21
       }

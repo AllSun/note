@@ -1,8 +1,8 @@
 
 import Layout from "@/pages/Layout";
-import Month from "@/pages/Month/Month";
-import New from "@/pages/New/New";
-import Year from "@/pages/Year/Year";
+import New from "@/pages/New";
+import Year from "@/pages/Year";
+import Month from "@/pages/Month";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([

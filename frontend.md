@@ -872,7 +872,9 @@ webpack生成，需要先安装node.js   同时附带安装 包管理器  npm
 ### 渲染列表
 
 ```react
-       {'我是一段话'}
+//不能直接渲染对象
+{new Date()}  这句话会报错
+{'我是一段话'}
        {a}<br/>
        {new Date().getDay()}
        <div style={{color: 'red'}}>我在学习啊</div>
@@ -1280,7 +1282,11 @@ npm run start
 <Outlet/>
 ```
 
-查看antdmobile官方文档
+---
+
+
+
+查看antdmobile官方文档，**学会看文档做demo**，然后定制化修改自己的代码满足需求
 
 ```react
 :root:root {
@@ -1288,6 +1294,29 @@ npm run start
 }
 ```
 
+路由中的onchange事件，会自动注入activekey参数，可以拿到路由路径信息
+
+---
+
+
+
 `<Button color='primary'>Purple</Button>`
 
 基于`Redux Toolkit` 管理账单列表，三大核心  state、reducer、action
+
+安装saas,类似css控制文件，应该是antd-mobile的后缀格式文件
+
+`npm i -D sass`
+
+```react
+npm i lodash
+```
+
+
+
+# 给自己的一个任务
+
+- 临摹antd_mobile官方文档实现一些组件的调用，熟悉组件
+- 自己写个组件
+- 为啥react都爱用箭头函数
+- 布局尽量使用div、span
