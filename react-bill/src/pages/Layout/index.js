@@ -43,7 +43,7 @@ const Layout = () => {
     return (
         <div className="layout">
             <div className="container">
-                <Outlet />
+                <Outlet/>
             </div>
             <div className="footer">
                 <TabBar onChange={swithRoute}>
