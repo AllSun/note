@@ -22,7 +22,7 @@ const DailyBill = ({ date, billList }) => {
     <div className={classNames('dailyBill')}>
       <div className="header">
         <div className="dateIcon">
-          <span className="date">{'6月28日'}</span>
+          <span className="date">{date}</span>
           {/* expand 有这个类名 展开的箭头朝上的样子 */}
           <span className={classNames('arrow', visible && 'expand')} onClick={() => setVisible(!visible)}></span>
         </div>
