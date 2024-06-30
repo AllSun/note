@@ -1,22 +1,23 @@
 import classNames from 'classnames'
 import './index.scss'
-import { useState , useMemo} from 'react'
+import { useState, useMemo } from 'react'
 import { billTypeToName } from '@/pages/contants'
+import Icon from '@/components/Icon'
 
 const DailyBill = ({ date, billList }) => {
 
-    const dayResult = useMemo(() => {
-        // 计算单日统计
-        // 支出  /  收入  / 结余
-        const pay = billList.filter(item => item.type === 'pay').reduce((a, c) => a + c.money, 0)
-        const income = billList.filter(item => item.type === 'income').reduce((a, c) => a + c.money, 0)
-        return {
-          pay,
-          income,
-          total: pay + income
-        }
-    
-      }, [billList])
+  const dayResult = useMemo(() => {
+    // 计算单日统计
+    // 支出  /  收入  / 结余
+    const pay = billList.filter(item => item.type === 'pay').reduce((a, c) => a + c.money, 0)
+    const income = billList.filter(item => item.type === 'income').reduce((a, c) => a + c.money, 0)
+    return {
+      pay,
+      income,
+      total: pay + income
+    }
+
+  }, [billList])
   // 控制展开收起
   const [visible, setVisible] = useState(false)
   return (
@@ -47,6 +48,8 @@ const DailyBill = ({ date, billList }) => {
         {billList.map(item => {
           return (
             <div className="bill" key={item.id}>
+              {/* 图标 */}
+              <Icon type={item.useFor} />
               <div className="detail">
                 {/*中文适配*/}
                 <div className="billType">{billTypeToName[item.useFor]}</div>

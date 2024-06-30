@@ -1,9 +1,9 @@
 
 import Layout from "@/pages/Layout";
 import New from "@/pages/New";
-import Year from "@/pages/Year";
 import Month from "@/pages/Month";
 import { createBrowserRouter } from "react-router-dom";
+import BillAll from "@/pages/Year";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'year',
-                element: <Year/>
+                element: <BillAll/>
             }
         ]
 

@@ -1,7 +1,12 @@
-const Year = ()=>{
-    return (
-        <div>我是 Year</div>
-    )
+
+
+const BillAll = () => {
+
+ 
+
+  return (
+    <div>年度账单</div>
+  )
 }
 
-export default Year
+export default BillAll
