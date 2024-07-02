@@ -1320,3 +1320,4 @@ npm i lodash
 - 自己写个组件
 - 为啥react都爱用箭头函数
 - 布局尽量使用div、span
+- 写个todolist,先完成JS版本，再做react版本，再做vue版本
