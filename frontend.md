@@ -1321,3 +1321,40 @@ npm i lodash
 - 为啥react都爱用箭头函数
 - 布局尽量使用div、span
 - 写个todolist,先完成JS版本，再做react版本，再做vue版本
+
+---
+
+# 记账本项目重构
+
+- 改为和后端接口的方式
+- 使用scss或者css文件
+- 就纯粹使用`npm create-react-app  billNote`先不使用脚手架
+- 先敲前端后敲nodejs后端
+
+
+
+## 涉及到的后台接口
+
+- 用户
+
+http://127.0.0.1:7001/api/user/register
+
+http://127.0.0.1:7001/api/user/login
+
+http://127.0.0.1:7001/api/user/get_userinfo
+
+http://127.0.0.1:7001/api/user/edit_userinfo
+
+http://127.0.0.1:7001/upload
+
+- 账单
+
+http://127.0.0.1:7001/api/bill/add
+
+http://127.0.0.1:7001/api/bill/list
+
+http://127.0.0.1:7001/api/bill/detail
+
+http://127.0.0.1:7001/api/bill/update
+
+http://127.0.0.1:7001/api/bill/delete
