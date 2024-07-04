@@ -1327,7 +1327,7 @@ npm i lodash
 # 记账本项目重构
 
 - 改为和后端接口的方式
-- 使用scss或者css文件
+- 使用scss或者less文件
 - 就纯粹使用`npm create-react-app  billNote`先不使用脚手架
 - 先敲前端后敲nodejs后端
 
@@ -1358,3 +1358,11 @@ http://127.0.0.1:7001/api/bill/detail
 http://127.0.0.1:7001/api/bill/update
 
 http://127.0.0.1:7001/api/bill/delete
+
+`npm install --save antd-mobile-icons`
+
+`npm install --save antd-mobile`
+
+`npm install react-router-dom`
+
+`npm i react-captcha-code`替代`npm install react-simple-captcha`
