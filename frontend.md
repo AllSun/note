@@ -1366,3 +1366,12 @@ http://127.0.0.1:7001/api/bill/delete
 `npm install react-router-dom`
 
 `npm i react-captcha-code`替代`npm install react-simple-captcha`
+
+全局样式引入和按需引入
+
+`npm i lib-flexible -S` 移动端项目适配 rem
+
+`npm i postcss-pxtorem`它的作用是在你编写完 `css` 后，将你的单位自动转化为 `rem` 单位
+
+`npm i less-loader craco-less `预编译加载器，原始是使用eject但是后期不好维护，建议使用第三方插件处理
+
