@@ -1,11 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
-import Login from '@/pages/Login'
+import Home from '@/pages/Home'
+import Data from '@/pages/Data'
+import User from '@/pages/User'
 
-const router = createBrowserRouter([
+const routes = [
     {
-        path: '/',
-        element: <Login />
+      path: "/",
+      component: Home
+    },
+    {
+      path: "/data",
+      component: Data
+    },
+    {
+      path: "/user",
+      component: User
     }
-])
-
-export default router
+  ];
+  
+  export default routes

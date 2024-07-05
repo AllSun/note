@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons'
 import  s from './style.module.less'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import axios from 'axios'
+import {post} from '@/utils'
 //import './index.css'
 
 
@@ -16,6 +16,7 @@ const Login = () => {
   const [verify, setVerify] = useState('')
   useEffect(() => {
     loadCaptchaEnginge(4);
+    console.log(process.env.NODE_ENV)
   }, [])
   useEffect(() => {
     document.title = type === 'login' ? '登录' : '注册';
@@ -32,13 +33,11 @@ const Login = () => {
     }
     try {
       if (type === 'login') {
-        const { data } = await axios.post('http://127.0.0.1:7001/api/user/login', {
+        const { data } = await post('/api/user/login', {
           username,
           password
         });
         /*调用浏览器的方法存储token及重定向*/
-        console.log('哈哈哈')
-        Toast.show({ content: data.msg })
         localStorage.setItem('token', data.token);
         window.location.href = '/';
       } else {
@@ -50,16 +49,12 @@ const Login = () => {
           Toast.show({ content: '验证码错误' })
           return
         };
-        const { data } = await axios.post('http://127.0.0.1:7001/api/user/register', {
+        await post('/api/user/register', {
           username,
           password
         });
-        if (data.code === 200) {
-          Toast.show({ content: '注册成功' });
-          setType('login')
-        } else {
-          Toast.show({ content: data.msg });
-        }
+        Toast.show({content:'注册成功'});
+        setType('login');
       }
     } catch (err) {
       Toast.show({ content: err.msg })

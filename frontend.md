@@ -1375,3 +1375,5 @@ http://127.0.0.1:7001/api/bill/delete
 
 `npm i less-loader craco-less `预编译加载器，原始是使用eject但是后期不好维护，建议使用第三方插件处理
 
+## 跨域代理
+

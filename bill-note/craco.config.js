@@ -1,6 +1,5 @@
 const path = require('path')
 const CracoLessPlugin = require('craco-less');
-const postcssPxToRem = require("postcss-pxtorem")
 
 
 module.exports = {
@@ -9,7 +8,8 @@ module.exports = {
     //配置别名
     alias: {
       //约定使用 @ 表示 src文件所在路径
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      'utils': path.resolve(__dirname, 'src/utils') // src 路径
     }
   },
 
@@ -49,7 +49,7 @@ module.exports = {
             [
               'postcss-pxtorem',
               {
-                rootValue: 32, // 根元素字体大小
+                rootValue: 40, // 根元素字体大小
                 // propList: ['width', 'height']
                 propList: ['*'],
               },
@@ -60,5 +60,18 @@ module.exports = {
       },
     },
   },
+
+  devServer: {
+    proxy: {
+      "/api": {
+        // 当遇到 /api 路径时，将其转换成 target 的值
+        target: 'http://127.0.0.1:7001',
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
+    }
+  }
 
 } 
