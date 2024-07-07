@@ -1,15 +1,16 @@
 
 import React, { useState } from 'react';
-import s from './style.module.less'
 import { TabBar } from 'antd-mobile';
+import  './index.css'
 import { useNavigate } from 'react-router-dom';
 import {
     BillOutline,
     PieOutline,
     UserOutline
 } from 'antd-mobile-icons'
+import classNames  from 'classnames';
 
-const NavBar = ({ showNav }) => {
+const NavBar = ( {showNav} ) => {
     const [activeKey, setActiveKey] = useState('/');
 
     const navigateTo = useNavigate()
@@ -36,11 +37,12 @@ const NavBar = ({ showNav }) => {
             icon: <UserOutline />
         }
     ]
+ 
     return (
         <>
-        <div className={s.container}></div>
-        <div className={s.footer} >
-            <TabBar activeKey={activeKey} onChange={changeTab}>
+        <div className={'container'}></div>
+        <div className={classNames('footer',!showNav && 'notosee')} >
+            <TabBar activeKey={activeKey} onChange={changeTab} >
                 {tabs.map(item => (
                     <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
                 ))}

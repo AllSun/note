@@ -1367,6 +1367,8 @@ http://127.0.0.1:7001/api/bill/delete
 
 `npm i react-captcha-code`替代`npm install react-simple-captcha`
 
+`npm i dayjs`
+
 全局样式引入和按需引入
 
 `npm i lib-flexible -S` 移动端项目适配 rem

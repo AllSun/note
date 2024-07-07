@@ -4,6 +4,7 @@ import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons'
 import  s from './style.module.less'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import {post} from '@/utils'
+import cx from 'classnames'
 //import './index.css'
 
 
@@ -66,10 +67,9 @@ const Login = () => {
   return (
 
     <>
-      <span className={s.login} onClick={() => setType('login')}>登录</span>
+      <span className={cx({ [s.avtive]: type === 'login' })} onClick={() => setType('login')}>登录</span>
       <span>|</span>
-      <span onClick={() => setType('register')}>注册</span>
-
+      <span className={cx({ [s.avtive]: type === 'register' })} onClick={() => setType('register')}>注册</span>
       <Form layout='horizontal'>
         <Form.Item label='用户名' name='username'>
           <Input placeholder='请输入用户名' clearable onChange={(value) => setUsername(value)} />

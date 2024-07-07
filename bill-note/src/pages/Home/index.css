@@ -1,0 +1,44 @@
+.home{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    background-color: #007fff;
+    color: #fff;
+    font-size: 14px;
+    z-index: 100;
+    padding: 10px;
+}
+
+.data-wrap {
+    font-size: 14px;
+}
+.income {
+    margin-left: 10px;
+  }
+
+  .type-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+}
+
+.left ,
+.right {
+    align-self: flex-start;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    padding: 3px 8px;
+    font-size: 12px;
+  }

@@ -49,7 +49,7 @@ module.exports = {
             [
               'postcss-pxtorem',
               {
-                rootValue: 40, // 根元素字体大小
+                rootValue: 30, // 根元素字体大小
                 // propList: ['width', 'height']
                 propList: ['*'],
               },
