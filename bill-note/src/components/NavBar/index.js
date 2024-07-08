@@ -42,7 +42,7 @@ const NavBar = ( {showNav} ) => {
         <>
         <div className={'container'}></div>
         <div className={classNames('footer',!showNav && 'notosee')} >
-            <TabBar activeKey={activeKey} onChange={changeTab} >
+            <TabBar activeKey={activeKey} onChange={changeTab} className='tab'>
                 {tabs.map(item => (
                     <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
                 ))}
