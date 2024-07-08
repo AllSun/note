@@ -71,11 +71,11 @@ const Home = () => {
     monthRef.current && monthRef.current.show()
   };
 
-     // 筛选月份
-     const selectMonth = (item) => {
-      setPage(1);
-      setCurrentTime(item)
-    }
+  // 筛选月份
+  const selectMonth = (item) => {
+    setPage(1);
+    setCurrentTime(item)
+  }
   return (
     <>
       <div className='home'>
@@ -88,9 +88,10 @@ const Home = () => {
             <div className='left' onClick={toggle}>
               <span className='title'>{currentSelect.name || '全部类型'} <DownOutline className='arrow' /></span>
             </div>
-            <div className='right'>
-          <span className='time' onClick={monthToggle}>{ currentTime }<DownOutline className='arrow' /></span>
-        </div>
+            <div className='seperate'></div>
+            <div className='right' onClick={monthToggle}>
+              <span className='time' >{currentTime}<DownOutline className='arrow' /></span>
+            </div>
           </div>
         </div>
       </div>
