@@ -10,10 +10,11 @@ import dayjs from 'dayjs'
 import { get } from '@/utils'
 
 import PopupType from '@/components/PopupType';
+import PopupDate from '@/components/PopupDate';
 
 const Home = () => {
   const typeRef = useRef(); // 账单类型 ref
-
+  const monthRef = useRef(); // 月份筛选 ref
   // eslint-disable-next-line no-unused-vars
   const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM')); // 当前筛选时间
   // eslint-disable-next-line no-unused-vars
@@ -32,9 +33,10 @@ const Home = () => {
     refreshing: '玩命加载中...',
     complete: '好啦',
   };
+
   // 获取账单方法
   const getBillList = async () => {
-    const { data } = await get(`/api/bill/list?page=${page}&page_size=5&date=2023-07`);
+    const { data } = await get(`/api/bill/list?page=${page}&page_size=5&date=2023-07&type_id=${currentSelect.id || 'all'}`);
     // 下拉刷新，重制数据
     if (page === 1) {
       setList(data.list);
@@ -47,7 +49,7 @@ const Home = () => {
   useEffect(() => {
     getBillList() // 初始化
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [page, currentSelect])
 
   const loadMore = async () => {
 
@@ -63,6 +65,17 @@ const Home = () => {
     setPage(1);
     setCurrentSelect(item)
   }
+
+  // 选择月份弹窗
+  const monthToggle = () => {
+    monthRef.current && monthRef.current.show()
+  };
+
+     // 筛选月份
+     const selectMonth = (item) => {
+      setPage(1);
+      setCurrentTime(item)
+    }
   return (
     <>
       <div className='home'>
@@ -76,8 +89,8 @@ const Home = () => {
               <span className='title'>{currentSelect.name || '全部类型'} <DownOutline className='arrow' /></span>
             </div>
             <div className='right'>
-              <span className='time' >2021-05<DownOutline className='arrow' /></span>
-            </div>
+          <span className='time' onClick={monthToggle}>{ currentTime }<DownOutline className='arrow' /></span>
+        </div>
           </div>
         </div>
       </div>
@@ -87,7 +100,8 @@ const Home = () => {
         getBillList();
       }} renderText={status => {
         return <div>{statusRecord[status]}</div>;
-      }}>
+      }}
+      >
 
         <div className='contentWrap'>
           {console.log(list)}
@@ -99,6 +113,7 @@ const Home = () => {
       </PullToRefresh>
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
       <PopupType ref={typeRef} onSelect={select} />
+      <PopupDate ref={monthRef} mode="month" onSelect={selectMonth} />
     </>
 
   )

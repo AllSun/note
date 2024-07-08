@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { Card ,List} from 'antd-mobile';
+import { Card } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom'
 import './index.css'
 

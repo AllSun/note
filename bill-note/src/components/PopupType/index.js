@@ -14,16 +14,15 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
   const [expense, setExpense] = useState([]); // 支出类型标签
   const [income, setIncome] = useState([]); // 收入类型标签
 
-  useEffect( () => {
-    // 请求标签接口放在弹窗内，这个弹窗可能会被复用，所以请求如果放在外面，会造成代码冗余。
-    // eslint-disable-next-line no-unused-vars
-    const fetchType = async()=>{
-        const { data: { list } } = await get('/api/type/list')
-    setExpense(list.filter(i => i.type === 1))
-    setIncome(list.filter(i => i.type === 2))
-    }
-    
+  useEffect(() => {
+    (async () => {
+      // 请求标签接口放在弹窗内，这个弹窗可能会被复用，所以请求如果放在外面，会造成代码冗余。
+      const { data: { list } } = await get('/api/type/list')
+      setExpense(list.filter(i => i.type === 1))
+      setIncome(list.filter(i => i.type === 2))
+    })()
   }, [])
+  console.log(expense)
 
   if (ref) {
     ref.current = {
@@ -58,7 +57,7 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
         请选择类型
       </div>
       <div className='content'>
-        <div onClick={() => choseType({ id: 'all' })} className={cx({ 'all': true, 'active': active === 'all' })}>全部类型</div>
+        <div onClick={() => choseType({ id: 'all' })} className={cx({ 'all': true, 'active': active === 'all' })}>全部类型考虑考虑考虑</div>
         <div className='title'>支出</div>
         <div className='expenseWrap'>
           {
