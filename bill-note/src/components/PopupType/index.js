@@ -57,7 +57,7 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
         请选择类型
       </div>
       <div className='content'>
-        <div onClick={() => choseType({ id: 'all' })} className={cx({ 'all': true, 'active': active === 'all' })}>全部类型考虑考虑考虑</div>
+        <div onClick={() => choseType({ id: 'all' })} className={cx({ 'all': true, 'active': active === 'all' })}>全部类型</div>
         <div className='title'>支出</div>
         <div className='expenseWrap'>
           {

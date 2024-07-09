@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { DownOutline } from 'antd-mobile-icons'
+import { DownOutline, EditSOutline } from 'antd-mobile-icons'
 import { PullToRefresh } from 'antd-mobile';
 
 import { sleep } from 'antd-mobile/es/utils/sleep'
@@ -11,10 +11,12 @@ import { get } from '@/utils'
 
 import PopupType from '@/components/PopupType';
 import PopupDate from '@/components/PopupDate';
+import PopupAddBill from '@/components/PopupAddBill'
 
 const Home = () => {
   const typeRef = useRef(); // 账单类型 ref
   const monthRef = useRef(); // 月份筛选 ref
+  const addRef = useRef(); // 添加账单 ref
   // eslint-disable-next-line no-unused-vars
   const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM')); // 当前筛选时间
   // eslint-disable-next-line no-unused-vars
@@ -36,7 +38,8 @@ const Home = () => {
 
   // 获取账单方法
   const getBillList = async () => {
-    const { data } = await get(`/api/bill/list?page=${page}&page_size=5&date=2023-07&type_id=${currentSelect.id || 'all'}`);
+    const { data } = await get(`/api/bill/list?page=${page}&page_size=5&date=${currentTime}&type_id=${currentSelect.id || 'all'}`);
+    //console.log(`/api/bill/list?page=${page}&page_size=5&date=${currentTime}&type_id=${currentSelect.id || 'all'}`);
     // 下拉刷新，重制数据
     if (page === 1) {
       setList(data.list);
@@ -49,11 +52,20 @@ const Home = () => {
   useEffect(() => {
     getBillList() // 初始化
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, currentSelect])
+  }, [page, currentSelect,currentTime])
 
   const loadMore = async () => {
 
   }
+
+  // 请求列表数据
+  const refreshData = () => {
+    if (page !== 1) {
+      setPage(1);
+    } else {
+      getBillList();
+    };
+  };
 
   // 添加账单弹窗
   const toggle = () => {
@@ -75,6 +87,11 @@ const Home = () => {
   const selectMonth = (item) => {
     setPage(1);
     setCurrentTime(item)
+  }
+
+  // 添加账单弹窗
+  const addToggle = () => {
+    addRef.current && addRef.current.show()
   }
   return (
     <>
@@ -113,8 +130,10 @@ const Home = () => {
         </div>
       </PullToRefresh>
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
+      <div className='add' onClick={addToggle}><EditSOutline  /></div>
       <PopupType ref={typeRef} onSelect={select} />
       <PopupDate ref={monthRef} mode="month" onSelect={selectMonth} />
+      <PopupAddBill ref={addRef} onReload={refreshData} />
     </>
 
   )
