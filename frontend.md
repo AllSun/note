@@ -507,6 +507,39 @@ content内容
 
 `z-index:999`层级属性，如果父元素也有设置，则无法突破父元素的限制，如果没有，则和外界元素比较；定位元素可以使用此元素，数值大的在最上面展示
 
+# Flex布局
+
+```css
+基本概念：水平轴、交叉轴
+水平方向
+justify-content: center/flex-start/flex-end/space-between(元素之间相等距离)/space-evenly(元素之间与容器之间相等距离)/space-around(元素与容器周围之间保持相等距离)
+垂直方向
+align-items:center/flex-start/flex-end/baseline(容器基线位置)/stretch(拉伸填满)
+注意点：1.当改变列方向时，justify-content控制垂直方向，align-content（align-items）控制水平方向
+       2.当改变行列方向后：flex-start/flex-end也调转了
+
+决定行之间的距离
+align-content:flex-start/flex-end/center/space-between/space-around/space-evenly/stretch
+flex-direction:row/row-reverse/column/column-reverse
+
+flex-wrap:nowrap（挤一行）/wrap(多行)/wrap-reverse
+flex-flow:row/column(2选1) wrap/wrap-reverse(2选1)
+
+order：值为±整数，向前后移动
+
+align-self：作用单个元素，同align-items的值
+
+
+```
+
+
+
+
+
+
+
+
+
 # H5部分
 
 1. 语义化标签：根据网页布局建立不同的标签，利于SEO优化
