@@ -1412,3 +1412,14 @@ http://127.0.0.1:7001/api/bill/delete
 
 ## 跨域代理
 
+
+
+
+
+`npm install -D vite` 这条命令的意思是将 Vite 安装为开发依赖包，更新 `package.json` 文件中的 `devDependencies` 字段。
+
+
+
+`-S` 或 `--save` 标志表示将依赖包添加到 `dependencies` 字段中
+
+## 按需加载
