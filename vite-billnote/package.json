@@ -11,13 +11,16 @@
   },
   "dependencies": {
     "antd-mobile": "^5.37.1",
+    "antd-mobile-icons": "^0.3.0",
     "axios": "^1.7.2",
     "consola": "^3.2.3",
+    "dayjs": "^1.11.11",
     "lib-flexible": "^0.3.2",
     "postcss-pxtorem": "^6.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
+    "react-simple-captcha": "^9.3.1",
     "zarm": "^3.1.2"
   },
   "devDependencies": {

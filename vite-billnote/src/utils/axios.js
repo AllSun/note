@@ -2,8 +2,7 @@ import axios from 'axios'
 import { Toast } from 'antd-mobile'
 
 const MODE = import.meta.env.MODE // 环境变量
-
-axios.defaults.baseURL = MODE == 'development' ? '/api' : 'http://api.chennick.wang'
+axios.defaults.baseURL = MODE == 'development' ? 'http://127.0.0.1:7001' : 'http://127.0.0.1:7001'
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['Authorization'] = `${localStorage.getItem('token') || null}`
@@ -17,6 +16,7 @@ axios.interceptors.response.use(res => {
   if (res.data.code != 200) {
     if (res.data.msg) Toast.show(res.data.msg)
     if (res.data.code == 401) {
+
       window.location.href = '/login'
     }
     if (res.data.code == 413) {
@@ -29,6 +29,3 @@ axios.interceptors.response.use(res => {
 })
 
 export default axios
-export const get = axios.get
-
-export const post = axios.post

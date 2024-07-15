@@ -122,7 +122,7 @@ const Home = () => {
       >
 
         <div className='contentWrap'>
-          {console.log(list)}
+          
           {
 
             list.map((item, index) => <BillItem bill={item} key={index} />)
