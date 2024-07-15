@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { DownOutline } from "antd-mobile-icons";
+import { DownOutline,EditSOutline } from "antd-mobile-icons";
 import { PullToRefresh, InfiniteScroll } from "antd-mobile";
 import dayjs from "dayjs";
 
@@ -10,11 +10,13 @@ import s from "./style.module.less";
 
 import PopupType from "../../components/PopupType"; 
 import PopupDate from "../../components/PopupDate";
+import PopupAddBill from "../../components/PopupBillAdd";
 
 const Home = () => {
   const typeRef = useRef(); // 账单类型 ref
   const [currentTime, setCurrentTime] = useState(dayjs().format("YYYY-MM")); // 当前筛选时间
   const monthRef = useRef(); // 月份筛选 ref
+  const addRef = useRef(); // 添加账单 ref
   // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1); // 分页
   const [list, setList] = useState([]); // 账单列表
@@ -98,6 +100,13 @@ const Home = () => {
   const monthToggle = () => {
     monthRef.current && monthRef.current.show()
   };
+
+  // 添加账单弹窗
+  const addToggle = () => {
+    addRef.current && addRef.current.show()
+  }
+
+  
   return (
     <div className={s.home}>
       <div className={s.header}>
@@ -136,6 +145,8 @@ const Home = () => {
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
       <PopupType ref={typeRef} onSelect={select} />
       <PopupDate ref={monthRef} mode="month" onSelect={selectMonth} />
+      <div className={s.add} onClick={addToggle}><EditSOutline  /></div>
+      <PopupAddBill ref={addRef} onReload={refreshData}/>
     </div>
   );
 };

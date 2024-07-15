@@ -37,6 +37,8 @@ export default defineConfig({
     }
   },
   server: {
+    host: true, // 允许局域网访问
+    port: 5173, // 可以根据需要更改端口
     proxy: {
       '/api': {
         // 当遇到 /api 路径时，将其转换成 target 的值
@@ -46,6 +48,7 @@ export default defineConfig({
       }
     }
   },
+
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'), // src 路径
