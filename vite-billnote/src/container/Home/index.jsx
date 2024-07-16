@@ -10,7 +10,7 @@ import s from "./style.module.less";
 
 import PopupType from "../../components/PopupType"; 
 import PopupDate from "../../components/PopupDate";
-import PopupAddBill from "../../components/PopupBillAdd";
+import PopupAddBill from "../../components/PopupAddBill";
 
 const Home = () => {
   const typeRef = useRef(); // 账单类型 ref

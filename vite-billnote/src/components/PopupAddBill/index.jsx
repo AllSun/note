@@ -21,7 +21,6 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
   const [remark, setRemark] = useState(""); // 备注
   const [showRemark, setShowRemark] = useState(false); // 备注输入框
   const [date, setDate] = useState(new Date()); // 日期
-  const numberKeyboardRef = useRef(null);
   const popupRef = useRef(null);
   const [popupHeight, setPopupHeight] = useState(260);
 

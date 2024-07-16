@@ -13,7 +13,7 @@ import {
     const [showNav, setShowNav] = useState(false) // 是否展示 Nav
     useEffect(() => {
       setShowNav(needNav.includes(location.pathname))
-      console.log('effect触发,showNav值为:'+showNav)
+      // console.log('effect触发,showNav值为:'+showNav)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]) // [] 内的参数若是变化，便会执行上述回调函数=  
   
