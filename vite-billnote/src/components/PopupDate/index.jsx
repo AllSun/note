@@ -4,7 +4,7 @@ import { DatePicker } from 'antd-mobile'
 import dayjs from 'dayjs'
 
 
-const PopupDate = forwardRef(({ onSelect, mode = 'date' }, ref) => {
+const PopupDate = forwardRef(({ onSelect, mode = 'day' }, ref) => {
   const [show, setShow] = useState(false)
   const [now, setNow] = useState(new Date())
   const maxNow = new Date();
@@ -14,7 +14,7 @@ const PopupDate = forwardRef(({ onSelect, mode = 'date' }, ref) => {
     setShow(false)
     if (mode === 'month') {
       onSelect(dayjs(item).format('YYYY-MM'))
-    } else if (mode === 'date') {
+    } else if (mode === 'day') {
       onSelect(dayjs(item).format('YYYY-MM-DD'))
     }
   }
