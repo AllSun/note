@@ -1,8 +1,12 @@
 import axios from "./axios";
+import { baseUrl } from '../config'
 
 export const get = axios.get;
 
 export const post = axios.post;
+
+const MODE = import.meta.env.MODE // 环境变量
+
 
 export const typeMap = {
   1: {
@@ -54,3 +58,11 @@ export const typeMap = {
     icon: "qita",
   },
 };
+export const imgUrlTrans = (url) => {
+  if (url && url.startsWith('http')) {
+    return url
+  } else {
+    url = `${MODE === 'development' ? 'http://localhost:7001' : baseUrl}${url}`
+    return url
+  }
+}

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import postcsspxtorem from 'postcss-pxtorem';
-import {resolve} from 'path'
+import { resolve } from 'path'
 
 
 
@@ -45,6 +45,10 @@ export default defineConfig({
         target: '127.0.0.1:7001',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '') // 将 /api 重写为空
+      },
+      '/public': {
+        target: '127.0.0.1:7001', 
+        changeOrigin: true,
       }
     }
   },
