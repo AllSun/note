@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Form, Input, Button, Toast } from 'antd-mobile';
 import { LockOutline } from 'antd-mobile-icons';
 import Header from '../../components/Header';
+import { get,post } from "../../utils";
+
 
 const ResetPassword = () => {
   const [form] = Form.useForm();
-  const [currentPassword,setCurrentPassword] = useState('');
-  const [newPassword,setNewPassword] = useState('');
-  const [confirmPassword,setConfirmPassword] =useState('');
 
-  const handleSubmit = () => {
 
+  const handleSubmit = async(values) => {
+    const {currentPassword,newPassword,confirmPassword} =values;
     if (newPassword !== confirmPassword) {
       Toast.show({
         icon: 'fail',
@@ -19,6 +19,12 @@ const ResetPassword = () => {
       return;
     }
     // 这里处理密码重置逻辑，比如发送请求到后端API
+
+    await post('/api/user/modify_pass', {
+      old_pass: currentPassword,
+      new_pass: newPassword,
+      new_pass2: confirmPassword,
+    })
     Toast.show({
       icon: 'success',
       content: '密码重置成功',
