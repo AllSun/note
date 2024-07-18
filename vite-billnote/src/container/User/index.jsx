@@ -53,7 +53,7 @@ const User = () => {
         extra={<RightOutline/>}
       />
       <Card
-        title="关于我们"
+        title="项目总结"
         onClick={() => navigateTo('/about')}
         extra={<RightOutline/>}
       />

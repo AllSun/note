@@ -1,46 +1,82 @@
-import React from 'react';
-import { Card, Input, Button, Toast } from 'antd-mobile';
-import { createForm  } from 'rc-form';
-import Header from '../../components/Header'
-import { post } from '../../utils'
+import React, { useState } from 'react';
+import { Form, Input, Button, Toast } from 'antd-mobile';
+import { LockOutline } from 'antd-mobile-icons';
+import Header from '../../components/Header';
 
-import s from './style.module.less'
+const ResetPassword = () => {
+  const [form] = Form.useForm();
+  const [currentPassword,setCurrentPassword] = useState('');
+  const [newPassword,setNewPassword] = useState('');
+  const [confirmPassword,setConfirmPassword] =useState('');
 
-const Account = (props) => {
+  const handleSubmit = () => {
 
-  return <>
-    <Header title="重制密码" />
-    <div className={s.account}>
-      <div className={s.form}>
-        <Card title="原密码">
+    if (newPassword !== confirmPassword) {
+      Toast.show({
+        icon: 'fail',
+        content: '新密码和确认密码不匹配',
+      });
+      return;
+    }
+    // 这里处理密码重置逻辑，比如发送请求到后端API
+    Toast.show({
+      icon: 'success',
+      content: '密码重置成功',
+    });
+  };
+
+  return (
+    <>
+    <Header title={'重置密码'}/>
+    <div style={{ padding: '20px' }}>
+      <Form
+        form={form}
+        layout='horizontal'
+        footer={
+          <Button block type='submit' color='primary' size='large'>
+            重置密码
+          </Button>
+        }
+        onFinish={handleSubmit}
+        onValuesChange={(a,b)=>{console.log(b)}}
+      >
+        <Form.Item
+          name='currentPassword'
+          label='原密码'
+          rules={[{ required: true, message: '请输入原密码' }]}
+        >
           <Input
-            clearable
-            type="text"
-            placeholder="请输入原密码"
-            // {...getFieldProps('oldpass', { rules: [{ required: true }] })}
+            prefix={<LockOutline />}
+            type='password'
+            placeholder='请输入原密码'
           />
-        </Card>
-        <Card title="新密码">
+        </Form.Item>
+        <Form.Item
+          name='newPassword'
+          label='新密码'
+          rules={[{ required: true, message: '请输入新密码' }]}
+        >
           <Input
-            clearable
-            type="text"
-            placeholder="请输入新密码"
-            // {...getFieldProps('newpass', { rules: [{ required: true }] })}
+            prefix={<LockOutline />}
+            type='password'
+            placeholder='请输入新密码'
           />
-        </Card>
-        <Card title="确认密码">
+        </Form.Item>
+        <Form.Item
+          name='confirmPassword'
+          label='确认密码'
+          rules={[{ required: true, message: '请确认新密码' }]}
+        >
           <Input
-            clearable
-            type="text"
-            placeholder="请再此输入新密码确认"
-            // {...getFieldProps('newpass2', { rules: [{ required: true }] })}
+            prefix={<LockOutline />}
+            type='password'
+            placeholder='请确认新密码'
           />
-        </Card>
-      </div>
-      {/* <Button className={s.btn} block theme="primary" onClick={}>提交</Button> */}
+        </Form.Item>
+      </Form>
     </div>
-  </>
+    </>
+  );
 };
 
-export default createForm()(Account);
-
+export default ResetPassword;
