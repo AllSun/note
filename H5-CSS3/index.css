@@ -1,0 +1,70 @@
+/* 标签选择器 */
+div{
+    background-color: aqua;
+}
+
+/* 类选择器 */
+.test{
+    color:red;
+    background-color: brown;
+}
+
+/* id选择器 */
+#footer{
+    width:300px;
+    height:400px;
+    background-color: purple;
+}
+
+/* 通配符选择器 */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+p{
+    font-size: 30px;
+}
+
+.duanluo>p{
+    background-color: beige;
+    color: blue;
+    font-size: 15px;
+    font-style:italic;
+    line-height: 70px;
+    /* font-size的倍数 */
+    line-height: 10;
+}
+
+.juzhong {
+    background-color: bisque;
+    height: 20px;
+    line-height: 20px;
+    font-family: '楷体';
+}
+
+#text-test{
+    text-indent: 2em;
+    text-align: center;
+    text-decoration: underline;
+}
+/* 后代选择器 */
+.father .son{
+    color:bisque;
+    background-color: white;
+}
+
+/* 子代选择器 */
+.father > .son > .small-son{
+    color: blue;
+}
+
+/* 并集选择器，用逗号 */
+
+/* 交集选择器，连写 */
+
+/* 伪类选择器 */
+div:hover{
+    background-color: brown;
+}
+

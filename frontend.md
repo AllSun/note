@@ -92,10 +92,14 @@ cmd+opt+t   表格
     <meta name="keywords" content="">
     <!-- 指定网站的描述信息 -->
     <meta name="description" content="">
-    
+    <link rel="stylesheet" href="./my.css">
     <title>常见标签及解释</title>
 </head>
 <body>
+    <!--h5 当属性和属性值相同时，则可以用一个单词表示-->
+    <audio src="#"  controls loop autoplay ></audio>
+    <div style="color: red; font-size:20px;">这是 div 标签</div>
+    <vedio src="#" controls loop muted autoplay></vedio>
     <strong>加粗</strong>
     <!-- 双标签和单标签 -->
     <!-- 单标签 -->
@@ -135,6 +139,7 @@ cmd+opt+t   表格
         主要用于布局，划分区域
     </div>
     <span>用于解决局部部件、文本</span>
+    <!--h1一般网页中只用一次-->
     <h1>h1-h6</h1>
     <!-- href:
     1、可以是网址
@@ -168,6 +173,17 @@ cmd+opt+t   表格
         </tbody>
         <tfoot></tfoot>
     </table>
+  <!--表单-->
+  <input type:"file/checkbox/radio/text/password" checked placeholder="" mutiple>
+  <textarea></textarea>
+  <label for="man">男</label>
+  <selection>
+  	<option>北京</option>
+    <option>福州</option>
+    <option selected>三明</option>
+  </selection>
+  
+  <button type="submit/reset/button">按钮</button>
 </body>
 </html>
 ~~~
